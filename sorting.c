@@ -3,7 +3,7 @@
 #include <sorting.h>
 
 
-//long * Load_File(char * Filename, int * size)
+long * Load_File(char * Filename, int * size)
 {
 	FILE * dafile; 
 	dafile = fopen(Filename, "r");
@@ -26,3 +26,11 @@
 	
 	return * array;
 }
+
+void genseq1(int * array, int N)
+{
+	
+
+	
+}
+
