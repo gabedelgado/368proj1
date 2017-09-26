@@ -67,5 +67,22 @@ void genseq1(int * array, int N)
 
 }
 
+void Save_Seq1(char * Filename, int N)
+{
+	
+	int * array;
+	FILE * writefile = fopen(Filename, "w");
+	
+	genseq1(array, N);
+	int count = 0; 
+	
+	while (array[count] != 0)
+	{
+		fprintf(writefile, "%d\n", array[count]);
+		count++;
+	}
+	
+}
+
 
 
