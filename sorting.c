@@ -15,7 +15,7 @@ long * Load_File(char * Filename, int * size)
 	
 
 	fscanf(dafile, "%d", size);
-	long * array[*size];
+	long * array = (long *)malloc(*size * sizeof(long));
 
 	for (int i = 0; i < *size; i++)
 	{
@@ -82,7 +82,25 @@ void Save_Seq1(char * Filename, int N)
 		count++;
 	}
 	
+	fclose(writefile);
 }
 
+void Shell_Insertion_Sort(long *Array, int Size, double *N_Comp, double *N_Move)
+{
+	
+}
 
+int Save_File(char * Filename, long * Array, int Size)
+{
+	FILE * writefile = fopen(Filename, "w");
+	int count = 0;
+	
+	while (count < Size)
+	{
+		fprintf(writefile, "%li\n", Array[count]
+		count++;
+	}
 
+	fclose(writefile);
+	return (count + 1);
+}	
