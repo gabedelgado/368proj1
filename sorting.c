@@ -27,7 +27,7 @@ long * Load_File(char * Filename, int * size)
 	return * array;
 }
 
-void genseq1(int * array, int N)
+int genseq1(int * array, int N)
 {
 	array = (int *)calloc(N, sizeof(int));
 	
@@ -64,6 +64,7 @@ void genseq1(int * array, int N)
 		lead++;
 	}	
 	array[lead-1] = 0;
+	return (lead-2);
 
 }
 
@@ -87,8 +88,53 @@ void Save_Seq1(char * Filename, int N)
 
 void Shell_Insertion_Sort(long *Array, int Size, double *N_Comp, double *N_Move)
 {
-	
+	int * seqarray;
+	int lastseqnum;
+	lastseqnum = genseq1(seqarray, Size);
+	int index1 = 0
+	int temp = 0;
+	int index2 = 0;
+	int temp2 = 0;
+	int checkvar = 0;
+	while (lastseqnum >= 0)
+	{
+		index1 = 0;		
+		while ((index1 + seqarray[lastseqnum]) < (Size))
+		{
+			*N_Comp = *N_Comp + 1;			
+			if ((Array[index1]) > (Array[index1 + seqarray[lastseqnum]]))
+			{
+				temp = Array[index1];
+				Array[index1] = Array[index1+seqarray[lastseqnum]];
+				Array[index1+seqarray[lastseqnum]] = temp;
+				*N_Move = *N_Move + 3;
+				index2 = index1;
+				checkvar = 1;
+				while (((index2 - seqarray[lastseqnum]) >= 0) && checkvar)
+				{
+					*N_Comp = *N_Comp + 1;
+					checkvar = 0;					
+					if(Array[index2] < (Array[index2 - seqarray[lastseqnum]]))
+					{
+						checkvar = 1;
+						temp2 = Array[index2];
+						Array[index2] = Array[index2 - seqarray[lastseqnum]];
+						Array[index2 - seqarray[lastseqnum]] = temp;
+						*N_Move = *N_Move + 3;
+					}
+					if (checkvar)
+					{
+						index2 = index2 - seqarray[lastseqnum]; 
+					}		
+				}
+			}
+			index1++;		
+		}
+		lastseqnum--;
+	}
+
 }
+
 
 int Save_File(char * Filename, long * Array, int Size)
 {
