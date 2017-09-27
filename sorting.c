@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <sorting.h>
+#include "sorting.h"
 
 
 long * Load_File(char * Filename, int * size)
@@ -16,20 +16,19 @@ long * Load_File(char * Filename, int * size)
 
 	fscanf(dafile, "%d", size);
 	long * array = (long *)malloc(*size * sizeof(long));
-
-	for (int i = 0; i < *size; i++)
+	int i;
+	for (i = 0; i < *size; i++)
 	{
-		fscanf(dafile, "%li", array[i]);
+		fscanf(dafile, "%li", &array[i]);
 	}
 	
-	fclose(Filename);
+	fclose(dafile);
 	
-	return * array;
+	return array;
 }
 
 int genseq1(int * array, int N)
 {
-	array = (int *)calloc(N, sizeof(int));
 	
 	int p2 = 0;
 	int p3 = 0;
@@ -71,7 +70,8 @@ int genseq1(int * array, int N)
 void Save_Seq1(char * Filename, int N)
 {
 	
-	int * array;
+	int * array = (int *)calloc(N, sizeof(int));
+	
 	FILE * writefile = fopen(Filename, "w");
 	
 	genseq1(array, N);
@@ -88,10 +88,10 @@ void Save_Seq1(char * Filename, int N)
 
 void Shell_Insertion_Sort(long *Array, int Size, double *N_Comp, double *N_Move)
 {
-	int * seqarray;
+	int * seqarray = (int *)calloc(Size, sizeof(int));
 	int lastseqnum;
 	lastseqnum = genseq1(seqarray, Size);
-	int index1 = 0
+	int index1 = 0;
 	int temp = 0;
 	int index2 = 0;
 	int temp2 = 0;
@@ -135,6 +135,12 @@ void Shell_Insertion_Sort(long *Array, int Size, double *N_Comp, double *N_Move)
 
 }
 
+void Improved_Bubble_Sort(long *Array, int Size, double *N_Comp, double *N_Move)
+{
+
+	
+}
+
 
 int Save_File(char * Filename, long * Array, int Size)
 {
@@ -143,10 +149,10 @@ int Save_File(char * Filename, long * Array, int Size)
 	
 	while (count < Size)
 	{
-		fprintf(writefile, "%li\n", Array[count]
+		fprintf(writefile, "%li\n", Array[count]);
 		count++;
 	}
 
 	fclose(writefile);
-	return (count + 1);
+	return (count);
 }	
