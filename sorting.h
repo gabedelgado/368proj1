@@ -18,9 +18,9 @@ int Save_File(char *Filename, long *Array, int Size);
 void Shell_Insertion_Sort(long *Array, int Size, double *N_Comp, double *N_Move);
 void Improved_Bubble_Sort(long *Array, int Size, double *N_Comp, double *N_Move);
 void Save_Seq1(char * Filename, int N);
-//void Save_Seq2(char * Filename, int N);
+void Save_Seq2(char * Filename, int N);
 int genseq1(int * array, int N);
-//void genseq2(long * array, int N);
+int genseq2(int * array, int N);
 
 #endif  // __sorting_h_ 
 

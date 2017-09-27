@@ -137,10 +137,82 @@ void Shell_Insertion_Sort(long *Array, int Size, double *N_Comp, double *N_Move)
 
 void Improved_Bubble_Sort(long *Array, int Size, double *N_Comp, double *N_Move)
 {
+	
+	int result = 1;
+	int lastnum = 0;	
+	while((1.3^(result)) < Size)
+	{
+		result++;
+	}
+	
+	int * seqarray = (int *)calloc(result, sizeof(int));
+		
+	lastnum = genseq2(seqarray, Size);
 
+	
+	 
 	
 }
 
+int genseq2(int * array, int N)
+{
+	
+	int temp = N;
+	temp = (int)(temp/1.3);
+	int count = 1;	
+			
+	while(temp != 1)
+	{
+		temp = (int)(temp/1.3);
+		count++;
+	}
+	
+	count--;
+	int returnnum = count;
+
+	temp = N;
+	temp = (int)(temp/1.3);
+		
+		
+	while(count >= 0)
+	{
+		if(temp == 9 || temp == 10)
+		{
+			temp = 11;
+		}		
+		array[count] = temp;
+		temp = (int)(temp/1.3);		
+		count--;
+	}	
+	return returnnum;
+}	
+	
+void Save_Seq2(char * Filename, int N)
+{
+	int result = 1;
+	
+	while((1.3^(result)) < (float)N)
+	{
+		result++;
+	}
+	
+	int * array = (int *)calloc(result, sizeof(int));
+	
+	genseq2(array, N);
+	
+	int count = 0; 
+	
+	FILE * writefile = fopen(Filename, "w");
+	
+	while (array[count] != 0)
+	{
+		fprintf(writefile, "%d\n", array[count]);
+		count++;
+	}
+	
+	fclose(writefile);
+	
+}
 
 int Save_File(char * Filename, long * Array, int Size)
 {
