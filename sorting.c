@@ -265,7 +265,7 @@ int Save_File(char * Filename, long * Array, int Size)
 {
 	FILE * writefile = fopen(Filename, "w");
 	int count = 0;
-	
+	fprintf(writefile, "%d\n", Size);
 	while (count < Size)
 	{
 		fprintf(writefile, "%li\n", Array[count]);
