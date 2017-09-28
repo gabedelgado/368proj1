@@ -140,18 +140,63 @@ void Improved_Bubble_Sort(long *Array, int Size, double *N_Comp, double *N_Move)
 	
 	int result = 1;
 	int lastnum = 0;	
-	while((1.3^(result)) < Size)
+	int numdiv = (int)(Size/1.3);
+	while(numdiv != 1)
 	{
+		numdiv = (int)(numdiv/1.3);
 		result++;
+		
 	}
 	
-	int * seqarray = (int *)calloc(result, sizeof(int));
+	int * seqarray = (int *)calloc(result + 5, sizeof(int));
 		
 	lastnum = genseq2(seqarray, Size);
 
+	int index = 0;
+	int indexref = 0;
+	int lastcheck = 0;
+	int currentindex = 0;
+	int temp = 0;	
 	
-	 
-	
+	while(lastnum >=0)
+	{			
+		printf("%d \n", seqarray[lastnum]);		
+		index = 0;		
+		while(((index + seqarray[lastnum]) < Size) && (seqarray[lastnum] != index)) 
+		{
+			lastcheck = -1;
+			indexref = index;						
+			currentindex = indexref;			
+			while(lastcheck != indexref)
+			{
+				
+				while(((currentindex + seqarray[lastnum]) != lastcheck) && ((currentindex + seqarray[lastnum]) < Size))
+				{
+					*N_Comp = *N_Comp + 1;					
+					if(Array[currentindex] > Array[currentindex + seqarray[lastnum]])
+					{
+						*N_Move = *N_Move + 3;						
+						temp = Array[currentindex];
+						Array[currentindex] = Array[currentindex + seqarray[lastnum]];
+						Array[currentindex + seqarray[lastnum]] = temp;
+					}
+					currentindex = currentindex + seqarray[lastnum];
+
+				}
+				
+				lastcheck = lastcheck - seqarray[lastnum];
+
+				if((currentindex + seqarray[lastnum]) >= Size)
+				{
+					lastcheck = currentindex;
+				}					
+				currentindex = indexref;			
+			}
+			index++;
+		}
+		lastnum--;
+	}
+				
 }
 
 int genseq2(int * array, int N)
@@ -167,7 +212,6 @@ int genseq2(int * array, int N)
 		count++;
 	}
 	
-	count--;
 	int returnnum = count;
 
 	temp = N;
@@ -183,7 +227,8 @@ int genseq2(int * array, int N)
 		array[count] = temp;
 		temp = (int)(temp/1.3);		
 		count--;
-	}	
+	}
+		
 	return returnnum;
 }	
 	
@@ -191,12 +236,15 @@ void Save_Seq2(char * Filename, int N)
 {
 	int result = 1;
 	
-	while((1.3^(result)) < (float)N)
+	int numdiv = (int)(N/1.3);
+	while(numdiv != 1)
 	{
+		numdiv = (int)(numdiv/1.3);
 		result++;
+		
 	}
 	
-	int * array = (int *)calloc(result, sizeof(int));
+	int * array = (int *)calloc(result + 5, sizeof(int));
 	
 	genseq2(array, N);
 	
