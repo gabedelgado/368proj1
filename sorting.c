@@ -157,6 +157,7 @@ void Improved_Bubble_Sort(long *Array, int Size, double *N_Comp, double *N_Move)
 	int lastcheck = 0;
 	int currentindex = 0;
 	int temp = 0;	
+	int checkswap = 1;	
 	
 	while(lastnum >=0)
 	{				
@@ -165,16 +166,18 @@ void Improved_Bubble_Sort(long *Array, int Size, double *N_Comp, double *N_Move)
 		{
 			lastcheck = -1;
 			indexref = index;						
-			currentindex = indexref;			
-			while(lastcheck != indexref)
+			currentindex = indexref;		
+			checkswap = 1;	
+			while((lastcheck != indexref) && checkswap)
 			{
-				
+				checkswap = 0;
 				while(((currentindex + seqarray[lastnum]) != lastcheck) && ((currentindex + seqarray[lastnum]) < Size))
 				{
 					*N_Comp = *N_Comp + 1;					
 					if(Array[currentindex] > Array[currentindex + seqarray[lastnum]])
 					{
 						*N_Move = *N_Move + 3;						
+						checkswap = 1;
 						temp = Array[currentindex];
 						Array[currentindex] = Array[currentindex + seqarray[lastnum]];
 						Array[currentindex + seqarray[lastnum]] = temp;
