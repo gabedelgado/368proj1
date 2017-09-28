@@ -159,8 +159,7 @@ void Improved_Bubble_Sort(long *Array, int Size, double *N_Comp, double *N_Move)
 	int temp = 0;	
 	
 	while(lastnum >=0)
-	{			
-		printf("%d \n", seqarray[lastnum]);		
+	{				
 		index = 0;		
 		while(((index + seqarray[lastnum]) < Size) && (seqarray[lastnum] != index)) 
 		{
